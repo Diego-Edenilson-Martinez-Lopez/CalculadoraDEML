@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Calculadora</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .calculadora {
+            background-color: #e6f2ff;
+            border: 1px solid #b8d6f9;
+            border-radius: 5px;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .calculadora h2 {
+            background-color: #d9e8fc;
+            margin: 0;
+            padding: 10px;
+            border-bottom: 1px solid #b8d6f9;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .calculadora form {
+            padding: 20px;
+        }
+        .calculadora label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        .calculadora input[type="number"],
+        .calculadora input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        .calculadora input[type="text"] {
+            background-color: #e0e0e0;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        .calculadora input[type="submit"],
+        .calculadora button {
+            background-color: #5bc0de;
+            color: white;
+            border: none;
+            padding: 10px 0;
+            cursor: pointer;
+            border-radius: 3px;
+            width: 48%;
+        }
+        .calculadora input[type="submit"]:hover,
+        .calculadora button:hover {
+            background-color: #46b8da;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculadora">
+        <h2>Resta</h2>
+        <form th:action="@{/calculadora/resta}" method="post">
+            <label for="numero1">Numero 1</label>
+            <input type="number" id="numero1" name="numero1" th:value="${numero1}" required>
+            
+            <label for="numero2">Numero 2</label>
+            <input type="number" id="numero2" name="numero2" th:value="${numero2}" required>
+            
+            <label for="resultado">Resultado</label>
+            <input type="text" id="resultado" th:value="${resultado}" readonly>
+            
+            <div class="buttons">
+                <input type="submit" value="Calcular">
+                <button type="button" onclick="limpiarCampos()">Limpiar</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function limpiarCampos() {
+            document.getElementById('numero1').value = '';
+            document.getElementById('numero2').value = '';
+            document.getElementById('resultado').value = '';
+        }
+    </script>
+</body>
+</html>
